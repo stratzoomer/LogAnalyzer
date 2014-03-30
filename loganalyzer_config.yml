@@ -5,5 +5,5 @@ defaultName: My friend
 server:
  type: simple
  connector:
- type: http
- port: 8080
+   type: http
+   port: 8080
