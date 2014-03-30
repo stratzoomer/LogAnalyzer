@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Ddw.http.port=$PORT -Ddw.http.adminPort=$PORT -jar target/loganalyzer-0.0.1-SNAPSHOT.jar server loganalyzer_config.yml
+web: java $JAVA_OPTS -Ddw.server.connector.port=$PORT -jar target/loganalyzer-0.0.1-SNAPSHOT.jar server loganalyzer_config.yml
