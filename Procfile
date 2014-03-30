@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -jar target/loganalyzer*SNAPSHOT.jar server loganalyzer_config.yml
