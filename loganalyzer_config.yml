@@ -4,3 +4,6 @@ defaultName: My friend
 # use the simple server factory if you only want to run on a single port
 server:
  type: simple
+ connector:
+ type: http
+ port: 8080
