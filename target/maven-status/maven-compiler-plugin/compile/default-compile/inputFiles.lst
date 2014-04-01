@@ -1,5 +1,8 @@
 /Users/stratzoomer/Projects/eclipse_workspace/loganalyzer/src/main/java/com/brahma/loganalyzer/LogAnalyzerApplication.java
+/Users/stratzoomer/Projects/eclipse_workspace/loganalyzer/src/main/java/com/brahma/loganalyzer/resources/DropWizardExampleResource.java
+/Users/stratzoomer/Projects/eclipse_workspace/loganalyzer/src/main/java/com/brahma/loganalyzer/resources/LogAnalyzerMainResource.java
 /Users/stratzoomer/Projects/eclipse_workspace/loganalyzer/src/main/java/com/brahma/loganalyzer/core/Saying.java
 /Users/stratzoomer/Projects/eclipse_workspace/loganalyzer/src/main/java/com/brahma/loganalyzer/LogAnalyzerConfiguration.java
+/Users/stratzoomer/Projects/eclipse_workspace/loganalyzer/src/main/java/com/brahma/loganalyzer/core/Contact.java
+/Users/stratzoomer/Projects/eclipse_workspace/loganalyzer/src/main/java/com/brahma/loganalyzer/views/LogAnalyzerMainView.java
 /Users/stratzoomer/Projects/eclipse_workspace/loganalyzer/src/main/java/com/brahma/loganalyzer/health/TemplateHealthCheck.java
-/Users/stratzoomer/Projects/eclipse_workspace/loganalyzer/src/main/java/com/brahma/loganalyzer/resources/LogAnalyzerMain.java

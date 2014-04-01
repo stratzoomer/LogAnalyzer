@@ -28,6 +28,16 @@
   			<artifactId>dropwizard-core</artifactId>
   			<version>0.7.0-rc2</version>
   		</dependency>
+  		<dependency>
+  			<groupId>io.dropwizard</groupId>
+  			<artifactId>dropwizard-views-freemarker</artifactId>
+  			<version>0.7.0-rc2</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>io.dropwizard</groupId>
+  			<artifactId>dropwizard-assets</artifactId>
+  			<version>0.7.0-rc2</version>
+  		</dependency>
   	</dependencies>
    <build>
   	<plugins>

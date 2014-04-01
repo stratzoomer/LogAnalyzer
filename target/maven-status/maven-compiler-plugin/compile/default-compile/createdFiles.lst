@@ -1,1 +1,8 @@
+com/brahma/loganalyzer/views/LogAnalyzerMainView.class
+com/brahma/loganalyzer/core/Contact.class
+com/brahma/loganalyzer/LogAnalyzerApplication.class
+com/brahma/loganalyzer/core/Saying.class
 com/brahma/loganalyzer/resources/LogAnalyzerMainResource.class
+com/brahma/loganalyzer/resources/DropWizardExampleResource.class
+com/brahma/loganalyzer/LogAnalyzerConfiguration.class
+com/brahma/loganalyzer/health/TemplateHealthCheck.class
