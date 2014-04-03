@@ -8,8 +8,7 @@ import io.dropwizard.setup.Environment;
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;
 
-import com.brahma.loganalyzer.resources.DropWizardExampleResource;
-import com.brahma.loganalyzer.resources.LogAnalyzerMainResource;
+import com.brahma.loganalyzer.resources.*;
 import com.brahma.loganalyzer.health.TemplateHealthCheck;
 import com.brahma.loganalyzer.core.Contact;
 
@@ -44,6 +43,7 @@ public class LogAnalyzerApplication extends Application<LogAnalyzerConfiguration
             final TemplateHealthCheck healthCheck =
                     new TemplateHealthCheck(configuration.getTemplate());
             environment.healthChecks().register("template", healthCheck);            
+            environment.jersey().register(new LogAnalysisSummaryResource());
             environment.jersey().register(exampleResource);
             environment.jersey().register(mainResource);
     }
