@@ -1,1 +1,13 @@
-Usage
+Log Analyzer is an application that processes http logs that are in Simple Log Format.
+It has a packaged log that can be used by default or users can upload a log file of their own choice.
+
+Usage:
+To run as a local Jetty server process:
+java -jar target/loganalyzer-0.1.0.jar server loganalyzer_config.yml
+
+To access application on a browser
+On the machine that the Jetty server is running, go to this url
+http://localhost:8080/loganalyzer
+
+To run the server on a different port:
+Modify the loganalyzer_config.yml configuration file to specify the port on which you want the server to run
