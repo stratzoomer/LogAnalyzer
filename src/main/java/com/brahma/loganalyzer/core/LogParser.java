@@ -28,7 +28,7 @@ public final class LogParser {
 		 */
 		Pattern p = Pattern.compile("^((?:(?:\\d){1,3}+\\.){3}\\d+) (-|\\w*) (-|\\w*) \\[([^\\[\\]:]+):(\\d+:\\d+:\\d+) ([\\-\\+]?\\d\\d\\d\\d)\\] \"(\\w+) ([\\S]+) ([^\"]+)\" (\\d+) (-|\\d+)( (?:\"[^\"]*\")( (?:\"[^\"]*\")( (?:\"[^\"]*\"))?)?)?\\s*\\Z");
 		Matcher m = p.matcher(logLine);
-		LOGGER.info("m.groupCount(): " + m.groupCount());
+		LOGGER.debug("m.groupCount(): " + m.groupCount());
 		while(m.find()) {
 			logEntryParts.put(LogEntry.LogEntryPart.ORIGIN_IP_ADDRESS, m.group(1));
 			logEntryParts.put(LogEntry.LogEntryPart.USER_IDENTIFIER, m.group(2));

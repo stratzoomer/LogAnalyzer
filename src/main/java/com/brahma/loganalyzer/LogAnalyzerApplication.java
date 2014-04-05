@@ -4,18 +4,17 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.views.ViewBundle;
 import io.dropwizard.setup.Environment;
+import io.dropwizard.assets.AssetsBundle;
 
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;
 
 import com.brahma.loganalyzer.resources.*;
 import com.brahma.loganalyzer.health.TemplateHealthCheck;
-import com.brahma.loganalyzer.core.Contact;
 
 public class LogAnalyzerApplication extends Application<LogAnalyzerConfiguration> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogAnalyzerApplication.class);
-	private Contact contact;
-
+	
     public static void main(String[] args) throws Exception {
         new LogAnalyzerApplication().run(args);
     }
@@ -28,6 +27,7 @@ public class LogAnalyzerApplication extends Application<LogAnalyzerConfiguration
     @Override
     public void initialize(Bootstrap<LogAnalyzerConfiguration> bootstrap) {
         bootstrap.addBundle(new ViewBundle());
+        bootstrap.addBundle(new AssetsBundle());
     }
 
     @Override
@@ -38,8 +38,7 @@ public class LogAnalyzerApplication extends Application<LogAnalyzerConfiguration
                 configuration.getTemplate(),
                 configuration.getDefaultName()
             );
-        contact = new Contact(100, "Brahma", "Koodallur", "555-555-5555");
-        final LogAnalyzerMainResource mainResource = new LogAnalyzerMainResource(contact);
+        final LogAnalyzerMainResource mainResource = new LogAnalyzerMainResource();
             final TemplateHealthCheck healthCheck =
                     new TemplateHealthCheck(configuration.getTemplate());
             environment.healthChecks().register("template", healthCheck);            

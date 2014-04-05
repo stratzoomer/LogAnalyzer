@@ -40,7 +40,7 @@ public class LogEntry {
 		this.statusCode = statusCode;
 		this.responseSize = responseSize;
 		this.clientInfo = clientInfo;
-		LOGGER.info("Added logEntry originIPAddress=" +  originIPAddress +
+		LOGGER.debug("Added logEntry originIPAddress=" +  originIPAddress +
 			";  userIdentifier=" +  userIdentifier +
 			";  authUser=" +  authUser +
 			";  logDate=" +  logDate +

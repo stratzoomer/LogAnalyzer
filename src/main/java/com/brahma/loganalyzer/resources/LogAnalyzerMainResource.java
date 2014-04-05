@@ -6,20 +6,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.brahma.loganalyzer.views.LogAnalyzerMainView;
-import com.brahma.loganalyzer.core.Contact;
 
 @Path("/loganalyzer")
 @Produces(MediaType.TEXT_HTML)
 public class LogAnalyzerMainResource {
-	private final Contact contact; 
 	
-    public LogAnalyzerMainResource(Contact contact) {
-		this.contact = contact;
+    public LogAnalyzerMainResource() {
 	}
 
 	@GET
     public LogAnalyzerMainView showResponse() {
-        return new LogAnalyzerMainView(contact);
+        return new LogAnalyzerMainView();
     }
 
 }

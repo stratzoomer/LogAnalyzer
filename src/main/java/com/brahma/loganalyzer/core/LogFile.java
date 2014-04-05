@@ -9,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.charset.Charset;
-
 import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
 
@@ -19,12 +18,15 @@ import org.slf4j.LoggerFactory;
 public class LogFile {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogFile.class);
 	private String content = new String("");
+	private final String logFileName;
 	private int uniqueIPAddressCount;
 
 	private ArrayList<LogEntry> logEntries = new ArrayList<LogEntry>();
 	private HashMap<String, Integer> ipAddressCounts = new HashMap<String, Integer>();
+	private HashMap<String, Integer> statusCodeCounts = new HashMap<String, Integer>();
 
 	public LogFile(String content) {
+		this.logFileName = "User Defined Log File";
 		Optional<String> possible = Optional.fromNullable(content);
 		if (possible.isPresent()) {
 			this.content = content;
@@ -33,23 +35,27 @@ public class LogFile {
 					.trimResults()
 					.split(content);
 			for(String s: result){
-				LOGGER.info(s);
-			}		
+				LOGGER.debug(s);
+			}
+		} else {
+			//raise exception for no content
 		}
 	}
 
 	public LogFile(java.nio.file.Path path) {
+		this.logFileName = "Default Log File";
 		try {
 			BufferedReader reader = 
 		            Files.newBufferedReader(path, Charset.defaultCharset() );
 			String line = null;
 			while ( (line = reader.readLine()) != null ) { 
-				LOGGER.info(line);
+				LOGGER.debug(line);
 				setContent(getContent() + System.getProperty("line.separator") + line);
 				addLogEntry(line);
 			}		
 		} catch (IOException ioe) {
 			LOGGER.error("Exception while loading default log file " + ioe.getMessage());
+			//raise exception for no content
 		}
 	}
 	
@@ -58,10 +64,24 @@ public class LogFile {
 		return content;
 	}
 
+	public String getLogFileName() {
+		return logFileName;
+	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}
 	
+	@JsonProperty
+	public HashMap<String, Integer> getIpAddressCounts() {
+		return ipAddressCounts;
+	}
+
+	@JsonProperty
+	public HashMap<String, Integer> getStatusCodeCounts() {
+		return statusCodeCounts;
+	}
+
 	public int getUniqueIPAddressCount() {
 		return uniqueIPAddressCount;
 	}
@@ -84,18 +104,19 @@ public class LogFile {
 				logEntryParts.get(LogEntry.LogEntryPart.STATUS_CODE),
 				logEntryParts.get(LogEntry.LogEntryPart.SIZE),
 				logEntryParts.get(LogEntry.LogEntryPart.CLIENT_INFO)));
-		LOGGER.info("LogFile#addLogEntry():1");
 		if (ipAddressCounts.containsKey(logEntryParts.get(LogEntry.LogEntryPart.ORIGIN_IP_ADDRESS))) {
 			int currentCount = ipAddressCounts.get(logEntryParts.get(LogEntry.LogEntryPart.ORIGIN_IP_ADDRESS));
-			LOGGER.info("LogFile#addLogEntry():2");
 			ipAddressCounts.put(logEntryParts.get(LogEntry.LogEntryPart.ORIGIN_IP_ADDRESS), ++currentCount);
-			LOGGER.info("LogFile#addLogEntry():3");
 		} else {
 			ipAddressCounts.put(logEntryParts.get(LogEntry.LogEntryPart.ORIGIN_IP_ADDRESS), new Integer(1));
-			LOGGER.info("LogFile#addLogEntry():4");
 		}
 		setUniqueIPAddressCount(ipAddressCounts.size());
-		LOGGER.info("LogFile#addLogEntry():5");
+		if (statusCodeCounts.containsKey(logEntryParts.get(LogEntry.LogEntryPart.STATUS_CODE))) {
+			int currentCount = statusCodeCounts.get(logEntryParts.get(LogEntry.LogEntryPart.STATUS_CODE));
+			statusCodeCounts.put(logEntryParts.get(LogEntry.LogEntryPart.STATUS_CODE), ++currentCount);
+		} else {
+			statusCodeCounts.put(logEntryParts.get(LogEntry.LogEntryPart.STATUS_CODE), new Integer(1));
+		}
 	}
 	
 	public ArrayList<LogEntry> getLogEntries() {
