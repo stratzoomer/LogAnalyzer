@@ -11,12 +11,27 @@
 	</head>
 	<body id="home">
 		<#include "header.ftl">
+		<div id="nav-container">
+			<h2>Select Type of Log File to Process</h2>
+		</div>
 		<div id="main-container">
 			<div id="left-container">
 				<a href="/loganalyzer/results-summary">Use default log file for analysis</a>
 			</div>
 			<div id="right-container">
-				<a href="">Upload a log file for analysis</a>
+				<form enctype="multipart/form-data" method="POST" action="/loganalyzer/file-upload">
+					<p>
+	            		<label for="file">Click to choose a log file from your computer</label>
+	            		<input type="file" id="file" name="file"/>
+	            	</p>
+	            	<p>
+	            		<label for="file-name">Enter a name for your log file</label>
+	            		<input type="text" id="file-name" name="file-name"/>
+	            	</p>
+	            	<p>
+	            		<input type="submit" value="Upload and Process"/>
+	            	</p>
+        		</form>
 			</div>
 		</div>
 	</body>

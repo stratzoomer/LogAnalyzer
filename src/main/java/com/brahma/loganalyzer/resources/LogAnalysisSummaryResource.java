@@ -28,7 +28,7 @@ public class LogAnalysisSummaryResource {
 	public View getDefaultLogStatistics() {
 		//LOGGER.info("Inside getDefaultLogStatistics()");
 		java.nio.file.Path path = FileSystems.getDefault().getPath(".", "netflix_phone_screen_log.txt");
-		LogFile logFile = new LogFile(path);
+		LogFile logFile = new LogFile(path, LogFile.defaultFileName);
 		return new LogAnalysisSummaryView(logFile);
 	}
 

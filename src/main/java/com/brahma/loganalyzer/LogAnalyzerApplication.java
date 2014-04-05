@@ -39,11 +39,13 @@ public class LogAnalyzerApplication extends Application<LogAnalyzerConfiguration
                 configuration.getDefaultName()
             );
         final LogAnalyzerMainResource mainResource = new LogAnalyzerMainResource();
-            final TemplateHealthCheck healthCheck =
-                    new TemplateHealthCheck(configuration.getTemplate());
-            environment.healthChecks().register("template", healthCheck);            
-            environment.jersey().register(new LogAnalysisSummaryResource());
-            environment.jersey().register(exampleResource);
-            environment.jersey().register(mainResource);
+        final TemplateHealthCheck healthCheck =
+                new TemplateHealthCheck(configuration.getTemplate());
+        environment.healthChecks().register("template", healthCheck);            
+        environment.jersey().register(new LogAnalysisSummaryResource());
+        environment.jersey().register(new FileUploadResource());
+        environment.jersey().register(exampleResource);
+        environment.jersey().register(mainResource);
+        environment.jersey().register(com.sun.jersey.multipart.impl.MultiPartReaderServerSide.class);
     }
 }

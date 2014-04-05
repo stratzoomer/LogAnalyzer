@@ -38,6 +38,11 @@
   			<artifactId>dropwizard-assets</artifactId>
   			<version>0.7.0-rc2</version>
   		</dependency>
+  		<dependency>
+    		<groupId>com.sun.jersey.contribs</groupId>
+    		<artifactId>jersey-multipart</artifactId>
+    		<version>1.18</version>
+		</dependency>
   	</dependencies>
    <build>
   	<plugins>

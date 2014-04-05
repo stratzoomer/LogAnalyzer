@@ -20,13 +20,14 @@ public class LogFile {
 	private String content = new String("");
 	private final String logFileName;
 	private int uniqueIPAddressCount;
+	public static final String defaultFileName = new String("Default Log File");
 
 	private ArrayList<LogEntry> logEntries = new ArrayList<LogEntry>();
 	private HashMap<String, Integer> ipAddressCounts = new HashMap<String, Integer>();
 	private HashMap<String, Integer> statusCodeCounts = new HashMap<String, Integer>();
 
-	public LogFile(String content) {
-		this.logFileName = "User Defined Log File";
+	public LogFile(String content, String logFileName) {
+		this.logFileName = logFileName;
 		Optional<String> possible = Optional.fromNullable(content);
 		if (possible.isPresent()) {
 			this.content = content;
@@ -42,8 +43,8 @@ public class LogFile {
 		}
 	}
 
-	public LogFile(java.nio.file.Path path) {
-		this.logFileName = "Default Log File";
+	public LogFile(java.nio.file.Path path, String logFileName) {
+		this.logFileName = logFileName;
 		try {
 			BufferedReader reader = 
 		            Files.newBufferedReader(path, Charset.defaultCharset() );

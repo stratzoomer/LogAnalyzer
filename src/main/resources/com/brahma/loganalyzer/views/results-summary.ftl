@@ -21,10 +21,13 @@
 	</head>
 	<body id="home">
 		<#include "header.ftl">
-		<div id="main-container">
+		<div id="nav-container">
 			<h2>Statistics for: ${logFile.logFileName?html}</h2>
+			<a href="/loganalyzer">Select a Different Log File</a>
+		</div>
+		<div id="main-container">
 			<div id="left-container">
-				<p>Total Unique IP Addresses: ${logFile.uniqueIPAddressCount?html}</p>
+				<h3>Total Unique IP Addresses: ${logFile.uniqueIPAddressCount?html}</h3>
 				<table class="display" id="counts-by-status">
 					<thead>
 						<tr>
@@ -40,7 +43,7 @@
 				</table>
 			</div>
 			<div id="right-container">
-				Counts by IP Addresses
+				<h3>Counts by IP Addresses</h3>
 				<table class="display" id="counts-by-ip">
 					<thead>
 						<tr>
