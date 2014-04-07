@@ -9,5 +9,15 @@ To access application on a browser
 On the machine that the Jetty server is running, go to this url
 http://localhost:8080/loganalyzer
 
+REST API (json)
+To upload a log file - 
+curl -H "Content-Type: application/json" -X POST -d '{"logName":"Test","logFileContent":"188.165.243.118 - - [16/Mar/2012:05:49:49 -0700] \"GET / HTTP/1.1\" 200 7599 \"-\" \"Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)\""}' http://localhost:8080/loganalyzer/upload
+Note that the data corresponding to the key logFileContent should be the the http log, as a continuous string. All quote characters in the log string should be escaped with a single backslash character. All line breaks should be replaced with \n.
+This method will return a system generated unique ID corresponding to the log file informaiton
+
+To get a summary of a log file:
+curl http://localhost:8080/loganalyzer/4/results-summary
+where 4 is the unique ID of the log information uploaded in a previous step.
+
 To run the server on a different port:
 Modify the loganalyzer_config.yml configuration file to specify the port on which you want the server to run
