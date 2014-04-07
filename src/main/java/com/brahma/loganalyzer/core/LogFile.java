@@ -3,7 +3,6 @@ package com.brahma.loganalyzer.core;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Pattern;
 import java.util.HashMap;
 import java.io.BufferedReader;

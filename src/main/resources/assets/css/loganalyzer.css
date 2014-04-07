@@ -34,6 +34,10 @@
 	color:#aea985;
 }
 
+#nav-container ul {
+	text-align:left;
+}
+
 #summary-container {
 	position:relative;
 	width:1020px;

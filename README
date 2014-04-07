@@ -16,8 +16,21 @@ Note that the data corresponding to the key logFileContent should be the the htt
 This method will return a system generated unique ID corresponding to the log file informaiton
 
 To get a summary of a log file:
-curl http://localhost:8080/loganalyzer/4/results-summary
-where 4 is the unique ID of the log information uploaded in a previous step.
+curl -H "Content-Tpe: application/json" http://localhost:8080/loganalyzer/1/results-summary
+where 1 is the unique ID of the log information uploaded in a previous step.
 
+Other available REST API calls
+  Unique IP Address count (as an integer)
+  curl -H "Content-Tpe: application/json" http://localhost:8080/loganalyzer/1/results-summary/unique-ip-count
+
+  Line count (as an integer)
+  curl -H "Content-Tpe: application/json" http://localhost:8080/loganalyzer/1/results-summary/line-count
+
+  Counts by IP Addresses (as a json string)
+  curl -H "Content-Tpe: application/json" http://localhost:8080/loganalyzer/1/results-summary/count-by-ip
+  
+  Counts by Status Codes (as a json string)
+  curl -H "Content-Tpe: application/json" http://localhost:8080/loganalyzer/1/results-summary/count-by-status
+  
 To run the server on a different port:
 Modify the loganalyzer_config.yml configuration file to specify the port on which you want the server to run

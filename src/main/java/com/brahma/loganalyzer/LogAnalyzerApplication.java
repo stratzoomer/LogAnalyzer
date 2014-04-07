@@ -48,9 +48,10 @@ public class LogAnalyzerApplication extends Application<LogAnalyzerConfiguration
                 new TemplateHealthCheck(configuration.getTemplate());
         environment.healthChecks().register("template", healthCheck);            
         
-        environment.jersey().register(new LogAnalysisSummaryResource(counter));
+        environment.jersey().register(new LogAnalysisSummaryResource());
         environment.jersey().register(new FileUploadResource(counter));
         environment.jersey().register(new DefaultLogResource(counter));
+        environment.jersey().register(new LogFileDetailResource());
         environment.jersey().register(mainResource);
         
         environment.jersey().register(com.sun.jersey.multipart.impl.MultiPartReaderServerSide.class);

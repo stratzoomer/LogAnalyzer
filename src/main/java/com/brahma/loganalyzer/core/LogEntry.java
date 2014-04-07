@@ -40,21 +40,12 @@ public class LogEntry {
 		this.statusCode = statusCode;
 		this.responseSize = responseSize;
 		this.clientInfo = clientInfo;
-		LOGGER.debug("Added logEntry originIPAddress=" +  originIPAddress +
-			";  userIdentifier=" +  userIdentifier +
-			";  authUser=" +  authUser +
-			";  logDate=" +  logDate +
-			";  logTime=" +  logTime +
-			";  timeZone=" +  timeZone +
-			";  method=" +  method +
-			";  resource=" +  resource +
-			";  protocol=" +  protocol +
-			";  statusCode=" +  statusCode +
-			";  responseSize=" +  responseSize +
-			";  clientInfo=" + clientInfo);
+		LOGGER.debug("Added logEntry: " +  this.toString());
 	}
 
-	public String getIpAddress() {
+
+
+	public String getOriginIPAddress() {
 		return originIPAddress;
 	}
 
@@ -102,5 +93,18 @@ public class LogEntry {
 		return clientInfo;
 	}
 
-
+	public String toString() {
+		return "originIPAddress=" +  originIPAddress +
+				";  userIdentifier=" +  userIdentifier +
+				";  authUser=" +  authUser +
+				";  logDate=" +  logDate +
+				";  logTime=" +  logTime +
+				";  timeZone=" +  timeZone +
+				";  method=" +  method +
+				";  resource=" +  resource +
+				";  protocol=" +  protocol +
+				";  statusCode=" +  statusCode +
+				";  responseSize=" +  responseSize +
+				";  clientInfo=" + clientInfo;
+	}
 }
