@@ -25,9 +25,13 @@
 			<h2>Statistics for: ${logFile.logFileName?html}</h2>
 			<a href="/loganalyzer">Select a Different Log File</a>
 		</div>
+		<div id="summary-container">
+			<div><em>Total Number of log entries: <strong>${logFile.lineCount?html}</strong></em></div>
+			<div><em>Total Unique IP Addresses: <strong>${logFile.uniqueIPAddressCount?html}</strong></em></div>
+		</div>
 		<div id="main-container">
 			<div id="left-container">
-				<h3>Total Unique IP Addresses: ${logFile.uniqueIPAddressCount?html}</h3>
+				<h3>Counts by HTTP status codes</h3>
 				<table class="display" id="counts-by-status">
 					<thead>
 						<tr>

@@ -1,6 +1,7 @@
 #header {
 	width:1060px;
 	height:80px;
+	left:20px;
 	font-family:Garamond, Verdana;
 	position:relative;
     background-color:#eeece0;
@@ -25,16 +26,28 @@
 }
 
 #nav-container {
+	position:relative;
+	left:40px;
 	width:1080px;
-	height:30px;
+	/*height:30px;*/
 	text-align:center;
 	color:#aea985;
+}
+
+#summary-container {
+	position:relative;
+	width:1020px;
+	top:30px;
+	left:40px;
+	background-color:#eeece0;
+	border:5px solid #b58900;
+	border-radius:10px;
 }
 
 #main-container {
 	position:relative;
 	width:1080px;
-	top:25px;
+	top:45px;
 	left:20px;
 }
 
@@ -60,16 +73,4 @@
 	border-radius:10px;
 	top:20px; 
 	left:540px;
-}
-
-#counts-by-ip table {
-	table-layout:fixed;
-	margin:45px;
-	width:100px;
-	border-collapse:collapse;
-	text-align:left;
-} 
-
-#counts-by-ip td {
-	padding:9px 8px 0px 8px;
 }

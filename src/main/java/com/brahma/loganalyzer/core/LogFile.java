@@ -3,22 +3,28 @@ package com.brahma.loganalyzer.core;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Pattern;
 import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.charset.Charset;
+
 import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
 
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;
 
+import com.brahma.loganalyzer.LogAnalyzerApplication;
+
 public class LogFile {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogFile.class);
 	private String content = new String("");
 	private final String logFileName;
+	private int lineCount;
+	private final long logID;
 	private int uniqueIPAddressCount;
 	public static final String defaultFileName = new String("Default Log File");
 
@@ -26,8 +32,10 @@ public class LogFile {
 	private HashMap<String, Integer> ipAddressCounts = new HashMap<String, Integer>();
 	private HashMap<String, Integer> statusCodeCounts = new HashMap<String, Integer>();
 
-	public LogFile(String content, String logFileName) {
+	public LogFile(String content, String logFileName, long logID) {
 		this.logFileName = logFileName;
+		this.logID = logID;
+		this.lineCount = 0;
 		Optional<String> possible = Optional.fromNullable(content);
 		if (possible.isPresent()) {
 			this.content = content;
@@ -37,14 +45,20 @@ public class LogFile {
 					.split(content);
 			for(String s: result){
 				LOGGER.debug(s);
+				addLogEntry(s);
+				this.lineCount++;
 			}
 		} else {
 			//raise exception for no content
 		}
+		LogAnalyzerApplication.logFileList.put(new Long(logID), this);
+		LOGGER.info("Added log file " + logID);
 	}
 
-	public LogFile(java.nio.file.Path path, String logFileName) {
+	public LogFile(java.nio.file.Path path, String logFileName, long logID) {
 		this.logFileName = logFileName;
+		this.logID = logID;
+		this.lineCount = 0;
 		try {
 			BufferedReader reader = 
 		            Files.newBufferedReader(path, Charset.defaultCharset() );
@@ -53,11 +67,14 @@ public class LogFile {
 				LOGGER.debug(line);
 				setContent(getContent() + System.getProperty("line.separator") + line);
 				addLogEntry(line);
+				this.lineCount++;
 			}		
 		} catch (IOException ioe) {
 			LOGGER.error("Exception while loading default log file " + ioe.getMessage());
 			//raise exception for no content
 		}
+		LogAnalyzerApplication.logFileList.put(new Long(logID), this);
+		LOGGER.info("Added log file " + logID);
 	}
 	
 	@JsonProperty
@@ -73,6 +90,14 @@ public class LogFile {
 		this.content = content;
 	}
 	
+	public int getLineCount() {
+		return lineCount;
+	}
+
+	public long getLogID() {
+		return logID;
+	}
+
 	@JsonProperty
 	public HashMap<String, Integer> getIpAddressCounts() {
 		return ipAddressCounts;
@@ -91,7 +116,7 @@ public class LogFile {
 		this.uniqueIPAddressCount = uniqueIPAddressCount;
 	}
 
-	public void addLogEntry(String logEntryString) {
+	private void addLogEntry(String logEntryString) {
 		HashMap<LogEntry.LogEntryPart, String> logEntryParts = LogParser.getLogEntryParts(logEntryString);
 		logEntries.add(new LogEntry(logEntryParts.get(LogEntry.LogEntryPart.ORIGIN_IP_ADDRESS),
 				logEntryParts.get(LogEntry.LogEntryPart.USER_IDENTIFIER),

@@ -12,6 +12,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.DirectoryStream;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicLong;
 
 import io.dropwizard.views.View;
 
@@ -23,32 +24,33 @@ import com.brahma.loganalyzer.views.LogAnalysisSummaryView;
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;
 
-@Path("/loganalyzer/file-upload")
-@Produces(MediaType.TEXT_HTML)
+@Path("/loganalyzer/upload")
 public class FileUploadResource {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FileUploadResource.class);
+	private final AtomicLong counter;
 	
-	public FileUploadResource() {
+	public FileUploadResource(AtomicLong counter) {
+		this.counter = counter;
 	}
 
 	@POST
     @Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces(MediaType.TEXT_HTML)
     public View uploadFileHandler(@FormDataParam("file") final InputStream inputStream, @FormDataParam("file-name") final String fileName) throws IOException {
-		/*java.nio.file.Path dir = FileSystems.getDefault().getPath(".", ".");
-		try (DirectoryStream<java.nio.file.Path> stream = Files.newDirectoryStream(dir)) {
-		    for (java.nio.file.Path file: stream) {
-		        System.out.println(file.getFileName());
-		    }
-		} catch (Exception x) {
-		    // IOException can never be thrown by the iteration.
-		    // In this snippet, it can only be thrown by newDirectoryStream.
-		    System.err.println(x);
-		}*/
         String uploadedFile = UUID.randomUUID().toString();
-        LOGGER.info(uploadedFile);
-        java.nio.file.Path outputPath = FileSystems.getDefault().getPath("./tmp/.", uploadedFile);
+        java.nio.file.Path outputPath = FileSystems.getDefault().getPath("./tmp/.", fileName + uploadedFile);
         Files.copy(inputStream, outputPath);
-        LogFile logFile = new LogFile(outputPath, fileName);
+        LOGGER.debug("File uploaded as " + fileName + uploadedFile);
+        LogFile logFile = new LogFile(outputPath, fileName, counter.incrementAndGet());
         return new LogAnalysisSummaryView(logFile);
     }
+	
+	@POST
+    @Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+    public long uploadFileHandler(String logName, String logFileContent) throws IOException {
+		long logFileID = counter.incrementAndGet();
+        LogFile logFile = new LogFile(logFileContent, logFileContent, logFileID);
+        return logFileID;
+    }	
 }

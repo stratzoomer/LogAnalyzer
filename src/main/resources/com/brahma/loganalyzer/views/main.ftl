@@ -16,10 +16,10 @@
 		</div>
 		<div id="main-container">
 			<div id="left-container">
-				<a href="/loganalyzer/results-summary">Use default log file for analysis</a>
+				<a href="/loganalyzer/load-default">Use default log file for analysis</a>
 			</div>
 			<div id="right-container">
-				<form enctype="multipart/form-data" method="POST" action="/loganalyzer/file-upload">
+				<form enctype="multipart/form-data" method="POST" action="/loganalyzer/upload">
 					<p>
 	            		<label for="file">Click to choose a log file from your computer</label>
 	            		<input type="file" id="file" name="file"/>

@@ -2,17 +2,23 @@ template: Hello, %s!
 defaultName: My friend
 
 # use the simple server factory if you only want to run on a single port
-#server:
-# type: simple
-# applicationContextPath: /
-# adminContextPath: /admin
-# connector:
-#   type: http
-#   port: 8080
+server:
+ type: simple
+ applicationContextPath: /
+ adminContextPath: /admin
+ connector:
+   type: http
+   port: 8080
 
 #logging:
 #  level: DEBUG
-#  loggers:
-#    io.dropwizard: DEBUG
 #  appenders:
 #    - type: console
+#      threshold: INFO
+#      target: stderr
+#    
+#    - type: file
+#      threshold: DEBUG
+#      currentLogFilename: ./logs/loganalyzer.log
+#      archivedLogFilenamePattern: ./logs/loganalyzer-%d.log.gz
+#      archivedFileCount: 5
