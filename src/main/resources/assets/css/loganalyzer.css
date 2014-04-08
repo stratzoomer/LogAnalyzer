@@ -16,7 +16,6 @@
 
 #header-img-left {
 	float:left;
-	/*padding:10px 10px 10px 10px;*/
 	padding: 11px;
 }
 
@@ -27,21 +26,36 @@
 
 #nav-container {
 	position:relative;
+	top:50px;
 	left:40px;
-	width:1080px;
-	/*height:30px;*/
-	text-align:center;
+	width:1020px;
+	height:80px;
+	/*text-align:center;*/
 	color:#aea985;
+	background-color:#eeece0;
+	border:5px solid #b58900;
+	border-radius:10px;
 }
 
-#nav-container ul {
+#nav-options {
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:300px;
 	text-align:left;
+	text-decoration:none;
+}
+
+#nav-title {
+	position:absolute;
+	left:350px;
+	top:0px;
 }
 
 #summary-container {
 	position:relative;
 	width:1020px;
-	top:30px;
+	top:80px;
 	left:40px;
 	background-color:#eeece0;
 	border:5px solid #b58900;
@@ -51,14 +65,16 @@
 #main-container {
 	position:relative;
 	width:1080px;
-	top:45px;
+	top:100px;
 	left:20px;
+	border:5px solid #b58900;
+	border-radius:10px;
 }
 
 #left-container {
 	position:absolute;
 	width:500px;
-	min-height:160px;
+	min-height:260px;
 	background-color:#eeece0;
 	border:5px solid #b58900;
 	border-radius:10px;
@@ -71,10 +87,17 @@
 #right-container {
 	position:absolute;
 	width:500px;
-	min-height:160px;
+	min-height:260px;
 	background-color:#eeece0;
 	border:5px solid #b58900;
 	border-radius:10px;
 	top:20px; 
 	left:540px;
 }
+
+#log-file-detail {
+	font-size:xx-small;
+}
+
+.ui-file{display:block;margin-top:32px;width:100%;font-size:2em;padding:8px}
+.ui-submit{display:block;margin-top:32px;width:100%;font-size:2em;padding:8px}

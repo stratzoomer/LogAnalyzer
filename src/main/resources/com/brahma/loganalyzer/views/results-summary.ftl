@@ -22,11 +22,13 @@
 	<body id="home">
 		<#include "header.ftl">
 		<div id="nav-container">
-			<ul id="navigation-list">
-				<li><a href="/loganalyzer">Select a Different Log File</a></li>
-				<li><a href="/loganalyzer/${logFile.logID}/log-file-detail">Log File Detail (logID: ${logFile.logID?html})</a></li>
-			</ul>
-			<h2>Statistics for: ${logFile.logFileName?html}</h2>
+			<div id="nav-options">
+				<div><a href="/loganalyzer"><< Select a Different Log File</a></div>
+				<div><a href="/loganalyzer/${logFile.logID}/log-file-detail">Log File Detail (logID: ${logFile.logID?html})</a></div>
+			</div>
+			<div id="nav-title">
+				<h2>Statistics for: ${logFile.logFileName?html}</h2>
+			</div>
 		</div>
 		<div id="summary-container">
 			<div><em>Total Number of log entries: <strong>${logFile.lineCount?html}</strong></em></div>

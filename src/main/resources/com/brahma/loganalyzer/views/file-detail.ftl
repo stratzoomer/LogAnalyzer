@@ -21,10 +21,12 @@
 	<body id="home">
 		<#include "header.ftl">
 		<div id="nav-container">
-			<ul id="navigation-list">
-				<li><a href="/loganalyzer/${logFile.logID}/results-summary">Back to summary page</a></li>
-			</ul>
-			<h2>Contents of: ${logFile.logFileName?html}</h2>
+			<div id="nav-options">
+				<a href="/loganalyzer/${logFile.logID}/results-summary"><< Back to summary page</a>
+			</div>
+			<div id="nav-title">
+				<h2>Contents of: ${logFile.logFileName?html}</h2>
+			</div>
 		</div>
 		<div id="summary-container">
 			<div><em>Total Number of log entries: <strong>${logFile.lineCount?html}</strong></em></div>
