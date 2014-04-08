@@ -27,7 +27,7 @@
 				<div><a href="/loganalyzer/${logFile.logID}/log-file-detail">Log File Detail (logID: ${logFile.logID?html})</a></div>
 			</div>
 			<div id="nav-title">
-				<h2>Statistics for: ${logFile.logFileName?html}</h2>
+				<h2>Statistics for: ${logFile.logFileName?html}  (logID: ${logFile.logID?html})</h2>
 			</div>
 		</div>
 		<div id="summary-container">

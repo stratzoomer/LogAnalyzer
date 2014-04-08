@@ -25,7 +25,7 @@
 				<a href="/loganalyzer/${logFile.logID}/results-summary"><< Back to summary page</a>
 			</div>
 			<div id="nav-title">
-				<h2>Contents of: ${logFile.logFileName?html}</h2>
+				<h2>Contents of: ${logFile.logFileName?html}  (logID: ${logFile.logID?html})</h2>
 			</div>
 		</div>
 		<div id="summary-container">
