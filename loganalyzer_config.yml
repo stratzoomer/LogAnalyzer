@@ -2,13 +2,13 @@ uploadLocation: ./tmp/.
 defaultName: My friend
 
 # use the simple server factory if you only want to run on a single port
-#server:
-# type: simple
-# applicationContextPath: /
-# adminContextPath: /admin
-# connector:
-#   type: http
-#   port: 8080
+server:
+ type: simple
+ applicationContextPath: /
+ adminContextPath: /admin
+ connector:
+   type: http
+   port: 8080
 
 #logging:
 #  level: DEBUG
