@@ -32,7 +32,7 @@ public class DefaultLogResource {
     @Timed
 	public View getDefaultLogStatistics() {
 		//LOGGER.info("Inside getDefaultLogStatistics()");
-		java.nio.file.Path path = FileSystems.getDefault().getPath(".", "netflix_phone_screen_log.txt");
+		java.nio.file.Path path = FileSystems.getDefault().getPath(".", "web_server_log_example_140_lines.txt");
 		LogFile logFile = new LogFile(path, LogFile.defaultFileName, counter.incrementAndGet());
 		return new LogAnalysisSummaryView(logFile);
 	}
