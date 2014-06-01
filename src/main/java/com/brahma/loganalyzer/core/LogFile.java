@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.charset.Charset;
 
+import javax.ws.rs.WebApplicationException;
+
 import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
 
@@ -43,9 +45,10 @@ public class LogFile {
 					.trimResults()
 					.split(content);
 			for(String s: result){
-				LOGGER.debug(s);
+				//LOGGER.debug(s);
 				addLogEntry(s);
 				this.lineCount++;
+				LOGGER.info("Log file line count " + getLineCount());
 			}
 		} else {
 			//raise exception for no content
@@ -117,6 +120,9 @@ public class LogFile {
 
 	private void addLogEntry(String logEntryString) {
 		HashMap<LogEntry.LogEntryPart, String> logEntryParts = LogParser.getLogEntryParts(logEntryString);
+		if (logEntryParts.size() != 12) {
+			throw new WebApplicationException();
+		}
 		logEntries.add(new LogEntry(logEntryParts.get(LogEntry.LogEntryPart.ORIGIN_IP_ADDRESS),
 				logEntryParts.get(LogEntry.LogEntryPart.USER_IDENTIFIER),
 				logEntryParts.get(LogEntry.LogEntryPart.AUTH_USER),

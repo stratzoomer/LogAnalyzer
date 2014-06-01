@@ -6,19 +6,19 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class LogAnalyzerConfiguration extends Configuration {
     @NotEmpty
-    private String template;
+    private String uploadLocation;
 
     @NotEmpty
     private String defaultName = "Stranger";
 
     @JsonProperty
-    public String getTemplate() {
-        return template;
+    public String getUploadLocation() {
+        return uploadLocation;
     }
 
     @JsonProperty
-    public void setTemplate(String template) {
-        this.template = template;
+    public void setUploadLocation(String uploadLocation) {
+        this.uploadLocation = uploadLocation;
     }
 
     @JsonProperty

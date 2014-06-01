@@ -43,16 +43,16 @@ public class LogAnalyzerApplication extends Application<LogAnalyzerConfiguration
 		logFileList = new HashMap<Long, LogFile>();
     	LOGGER.info("Inside run of LogAnalyzer");
     	
-        final LogAnalyzerMainResource mainResource = new LogAnalyzerMainResource();
         final TemplateHealthCheck healthCheck =
-                new TemplateHealthCheck(configuration.getTemplate());
-        environment.healthChecks().register("template", healthCheck);            
+                new TemplateHealthCheck(configuration.getUploadLocation());
+        environment.healthChecks().register("uploadLocation", healthCheck);            
         
         environment.jersey().register(new LogAnalysisSummaryResource());
         environment.jersey().register(new FileUploadResource(counter));
         environment.jersey().register(new DefaultLogResource(counter));
         environment.jersey().register(new LogFileDetailResource());
-        environment.jersey().register(mainResource);
+        environment.jersey().register(new LogAnalyzerMainResource());
+        environment.jersey().register(new RestfulInformationResource());
         
         environment.jersey().register(com.sun.jersey.multipart.impl.MultiPartReaderServerSide.class);
     }

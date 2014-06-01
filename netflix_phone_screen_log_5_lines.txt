@@ -1,5 +1,0 @@
-188.165.243.118 - - [16/Mar/2012:05:49:49 -0700] "GET / HTTP/1.1" 200 7599 "-" "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)"
-220.181.108.79 - - [16/Mar/2012:06:21:58 -0700] "GET / HTTP/1.1" 200 3647 "-" "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)"
-207.46.199.37 - - [16/Mar/2012:07:30:03 -0700] "GET /robots.txt HTTP/1.1" 200 504 "-" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
-123.125.71.51 - - [16/Mar/2012:07:57:25 -0700] "GET /robots.txt HTTP/1.1" 200 454 "-" "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)"
-123.125.71.70 - - [16/Mar/2012:07:57:48 -0700] "GET /robots.txt HTTP/1.1" 200 454 "-" "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)"

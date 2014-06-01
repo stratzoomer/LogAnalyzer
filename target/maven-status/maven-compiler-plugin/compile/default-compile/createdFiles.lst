@@ -1,6 +1,7 @@
 com/brahma/loganalyzer/resources/DefaultLogResource.class
-com/brahma/loganalyzer/core/LogEntry$LogEntryPart.class
 com/brahma/loganalyzer/views/LogAnalysisSummaryView.class
+com/brahma/loganalyzer/exception/LogAnalyzerException.class
+com/brahma/loganalyzer/core/LogEntry$LogEntryPart.class
 com/brahma/loganalyzer/resources/FileUploadResource.class
 com/brahma/loganalyzer/resources/LogAnalyzerMainResource.class
 com/brahma/loganalyzer/core/LogEntry.class

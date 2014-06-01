@@ -1,4 +1,4 @@
-Log Analyzer is an application that processes http logs that are in Simple Log Format.
+Log Analyzer is an application that helps you analyze and glean information from http logs that are in Simple Log Format.
 It has a packaged log that can be used by default or users can upload a log file of their own choice.
 
 Usage:
@@ -13,24 +13,24 @@ REST API (json)
 To upload a log file - 
 curl -H "Content-Type: application/json" -X POST -d '{"logName":"Test","logFileContent":"188.165.243.118 - - [16/Mar/2012:05:49:49 -0700] \"GET / HTTP/1.1\" 200 7599 \"-\" \"Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)\""}' http://localhost:8080/loganalyzer/upload
 Note that the data corresponding to the key logFileContent should be the the http log, as a continuous string. All quote characters in the log string should be escaped with a single backslash character. All line breaks should be replaced with \n.
-This method will return a system generated unique ID corresponding to the log file informaiton
+This method will return a system generated unique ID corresponding to the log file information
 
 To get a summary of a log file:
-curl -H "Content-Tpe: application/json" http://localhost:8080/loganalyzer/1/results-summary
+curl -H "Content-Type: application/json" http://localhost:8080/loganalyzer/1/results-summary
 where 1 is the unique ID of the log information uploaded in a previous step.
 
 Other available REST API calls
   Unique IP Address count (as an integer)
-  curl -H "Content-Tpe: application/json" http://localhost:8080/loganalyzer/1/results-summary/unique-ip-count
+  curl -H "Content-Type: application/json" http://localhost:8080/loganalyzer/1/results-summary/unique-ip-count
 
   Line count (as an integer)
-  curl -H "Content-Tpe: application/json" http://localhost:8080/loganalyzer/1/results-summary/line-count
+  curl -H "Content-Type: application/json" http://localhost:8080/loganalyzer/1/results-summary/line-count
 
   Counts by IP Addresses (as a json string)
-  curl -H "Content-Tpe: application/json" http://localhost:8080/loganalyzer/1/results-summary/count-by-ip
+  curl -H "Content-Type: application/json" http://localhost:8080/loganalyzer/1/results-summary/count-by-ip
   
   Counts by Status Codes (as a json string)
-  curl -H "Content-Tpe: application/json" http://localhost:8080/loganalyzer/1/results-summary/count-by-status
+  curl -H "Content-Type: application/json" http://localhost:8080/loganalyzer/1/results-summary/count-by-status
   
 To run the server on a different port:
 Modify the loganalyzer_config.yml configuration file to specify the port on which you want the server to run

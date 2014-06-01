@@ -38,6 +38,7 @@ public class LogAnalysisSummaryResource {
 	
 	@GET
     @Timed
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
 	public LogFile getLogStatistics(@PathParam("logID") long logID) {
 		LogFile logFile = LogAnalyzerApplication.logFileList.get(new Long(logID));

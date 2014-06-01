@@ -1,21 +1,34 @@
 package com.brahma.loganalyzer.core;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;
 
 public class LogEntry {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogEntry.class);
+	@NotEmpty
 	private final String originIPAddress;
+	@NotEmpty
 	private final String userIdentifier;
+	@NotEmpty
 	private final String authUser;
+	@NotEmpty
 	private final String logDate;
+	@NotEmpty
 	private final String logTime;
+	@NotEmpty
 	private final String timeZone;
+	@NotEmpty
 	private final String method;
+	@NotEmpty
 	private final String resource;
+	@NotEmpty
 	private final String protocol;
+	@NotEmpty
 	private final String statusCode;
+	@NotEmpty
 	private final String responseSize;
+	@NotEmpty
 	private final String clientInfo;
 	
 	public enum LogEntryPart {

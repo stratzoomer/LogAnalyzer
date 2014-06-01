@@ -38,9 +38,10 @@ public class FileUploadResource {
 	@Produces(MediaType.TEXT_HTML)
     public View uploadFileHandler(@FormDataParam("file") final InputStream inputStream, @FormDataParam("file-name") final String fileName) throws IOException {
         String uploadedFile = UUID.randomUUID().toString();
+        LOGGER.info("File uploaded " + inputStream + "; name: " + fileName);
         java.nio.file.Path outputPath = FileSystems.getDefault().getPath("./tmp/.", fileName + uploadedFile);
         Files.copy(inputStream, outputPath);
-        LOGGER.debug("File uploaded as " + fileName + uploadedFile);
+        LOGGER.info("Uploaded file saved as " + fileName + uploadedFile);
         LogFile logFile = new LogFile(outputPath, fileName, counter.incrementAndGet());
         return new LogAnalysisSummaryView(logFile);
     }
